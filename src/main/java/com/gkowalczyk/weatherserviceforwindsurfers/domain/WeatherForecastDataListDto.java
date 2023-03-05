@@ -2,10 +2,7 @@ package com.gkowalczyk.weatherserviceforwindsurfers.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 
 @Data
@@ -16,10 +13,10 @@ import lombok.NoArgsConstructor;
 
 public class WeatherForecastDataListDto {
 
-    @JsonProperty("maxTemperature")
-    private String maxTemperature;
-    @JsonProperty("minTemperature")
-    private String minTemperature;
-    @JsonProperty("windSpeed")
-    private String windSpeed;
+    @JsonProperty("high_temp")
+    private String high_temp;
+    @JsonProperty("low_temp")
+    private String low_temp;
+    @JsonProperty("wind_spd")
+    private String wind_spd;
 }
