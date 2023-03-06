@@ -12,6 +12,5 @@ import java.util.List;
 @NoArgsConstructor
 public class WeatherForecast {
 
-
     private List<WeatherForecastDataList> data;
 }

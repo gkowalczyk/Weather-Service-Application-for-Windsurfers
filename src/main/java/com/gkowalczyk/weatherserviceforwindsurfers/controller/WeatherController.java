@@ -30,6 +30,5 @@ public class WeatherController {
       // List<WeatherForecastDataList> list = weatherMapper.mapToBoard(weatherClient.getWeatherForecastDto());
         //return ResponseEntity.ok(weatherMapper.mapToBoardDto(list));
         return ResponseEntity.ok(weatherClient.getWeatherForecastDto());
-
     }
 }

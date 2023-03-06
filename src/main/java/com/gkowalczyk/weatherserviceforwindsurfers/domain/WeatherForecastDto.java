@@ -17,5 +17,4 @@ public class WeatherForecastDto {
     @JsonProperty("data")
     private List<WeatherForecastDataListDto> data;
 
-
 }

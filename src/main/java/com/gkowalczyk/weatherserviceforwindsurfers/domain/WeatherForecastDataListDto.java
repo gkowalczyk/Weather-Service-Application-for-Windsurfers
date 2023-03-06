@@ -10,7 +10,6 @@ import lombok.*;
 @NoArgsConstructor
 @EqualsAndHashCode
 @JsonIgnoreProperties(ignoreUnknown = true)
-
 public class WeatherForecastDataListDto {
     @JsonProperty("high_temp")
     private double high_temp;
