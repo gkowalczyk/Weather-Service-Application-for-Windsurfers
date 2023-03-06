@@ -13,8 +13,5 @@ import java.util.List;
 public class WeatherForecast {
 
 
-
     private List<WeatherForecastDataList> data;
-
-
 }

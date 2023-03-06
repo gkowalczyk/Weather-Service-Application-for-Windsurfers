@@ -24,7 +24,6 @@ public class WeatherController {
         this.weatherClient = weatherClient;
 
     }
-
     @GetMapping("get")
 
     public ResponseEntity<List<WeatherForecastDataListDto>> getWeatherForecast() {

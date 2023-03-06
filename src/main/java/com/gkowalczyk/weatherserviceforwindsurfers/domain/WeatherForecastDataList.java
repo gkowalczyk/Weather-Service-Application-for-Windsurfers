@@ -11,8 +11,6 @@ import lombok.NoArgsConstructor;
 public class WeatherForecastDataList {
 
     private double high_temp;
-
     private double low_temp;
-
     private double wind_spd;
 }

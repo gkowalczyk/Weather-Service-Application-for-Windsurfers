@@ -37,7 +37,6 @@ public class WeatherClient {
 
 
 
-
     //@EventListener(ApplicationReadyEvent.class)
     public List<WeatherForecastDataListDto> getWeatherForecastDto() {
 

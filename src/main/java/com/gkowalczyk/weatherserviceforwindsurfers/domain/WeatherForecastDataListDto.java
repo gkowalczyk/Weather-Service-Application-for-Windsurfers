@@ -12,12 +12,10 @@ import lombok.*;
 @JsonIgnoreProperties(ignoreUnknown = true)
 
 public class WeatherForecastDataListDto {
-
     @JsonProperty("high_temp")
     private double high_temp;
     @JsonProperty("low_temp")
     private double low_temp;
     @JsonProperty("wind_spd")
     private double wind_spd;
-
 }
