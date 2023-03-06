@@ -14,9 +14,10 @@ import lombok.*;
 public class WeatherForecastDataListDto {
 
     @JsonProperty("high_temp")
-    private String high_temp;
+    private double high_temp;
     @JsonProperty("low_temp")
-    private String low_temp;
+    private double low_temp;
     @JsonProperty("wind_spd")
-    private String wind_spd;
+    private double wind_spd;
+
 }

@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class WeatherForecastDataList {
 
-    private String high_temp;
+    private double high_temp;
 
-    private String low_temp;
+    private double low_temp;
 
-    private String wind_spd;
+    private double wind_spd;
 }

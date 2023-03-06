@@ -1,14 +1,14 @@
 package com.gkowalczyk.weatherserviceforwindsurfers.controller;
 
+import com.gkowalczyk.weatherserviceforwindsurfers.client.Response;
 import com.gkowalczyk.weatherserviceforwindsurfers.client.WeatherClient;
 import com.gkowalczyk.weatherserviceforwindsurfers.domain.WeatherForecast;
 import com.gkowalczyk.weatherserviceforwindsurfers.domain.WeatherForecastDataList;
 import com.gkowalczyk.weatherserviceforwindsurfers.domain.WeatherForecastDataListDto;
 import com.gkowalczyk.weatherserviceforwindsurfers.domain.WeatherForecastDto;
-import com.gkowalczyk.weatherserviceforwindsurfers.mapper.WeatherMapper;
-import org.springframework.http.*;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -17,18 +17,20 @@ import java.util.List;
 //@RequestMapping(produces = {MediaType.APPLICATION_JSON_VALUE}, path = "/v1")
 public class WeatherController {
     private final WeatherClient weatherClient;
-    private final WeatherMapper weatherMapper;
+    //private final WeatherMapper weatherMapper;
 
 
-    public WeatherController(WeatherClient weatherClient, WeatherMapper weatherMapper) {
+    public WeatherController(WeatherClient weatherClient) {
         this.weatherClient = weatherClient;
-        this.weatherMapper = weatherMapper;
+
     }
 
-    @GetMapping
+    @GetMapping("get")
 
-    public ResponseEntity<List<WeatherForecastDto>> getWeatherForecast() {
-        List<WeatherForecast> list = weatherMapper.mapToBoard(weatherClient.getWeatherForecastDto());
-        return ResponseEntity.ok(weatherMapper.mapToBoardDto(list));
+    public ResponseEntity<List<WeatherForecastDataListDto>> getWeatherForecast() {
+      // List<WeatherForecastDataList> list = weatherMapper.mapToBoard(weatherClient.getWeatherForecastDto());
+        //return ResponseEntity.ok(weatherMapper.mapToBoardDto(list));
+        return ResponseEntity.ok(weatherClient.getWeatherForecastDto());
+
     }
 }

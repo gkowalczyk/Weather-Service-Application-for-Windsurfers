@@ -12,7 +12,9 @@ import java.util.List;
 @NoArgsConstructor
 public class WeatherForecast {
 
-    private String city_name;
+
+
     private List<WeatherForecastDataList> data;
+
 
 }
