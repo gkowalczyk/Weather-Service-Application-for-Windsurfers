@@ -1,6 +1,5 @@
 package com.gkowalczyk.weatherserviceforwindsurfers.domain;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class WeatherForecastDataList {
+
     private double high_temp;
     private double low_temp;
     private double wind_spd;
