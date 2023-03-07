@@ -14,8 +14,8 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class WeatherForecastDto {
 
-    @JsonProperty("city_name")
-    private String city_name;
+   // @JsonProperty("city_name")
+   // private String city_name;
     @JsonProperty("data")
     private List<WeatherForecastDataListDto> data;
 }
