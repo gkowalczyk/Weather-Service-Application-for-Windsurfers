@@ -7,6 +7,7 @@ import com.gkowalczyk.weatherserviceforwindsurfers.domain.WeatherForecastDataLis
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,29 +28,24 @@ public class WeatherService {
     }
 
    
-    public Map<String, WeatherForecastDataListDto> addWeatherForecastsToMap(String date) {
+    public Map<String, WeatherForecastDataListDto> addWeatherForecastsToMap(LocalDate date) {
         List<String> locations = new ArrayList<>(cityInterface.getLocation());
         Map<String, List<WeatherForecastDataListDto>> weatherMap = new HashMap<>();
 
         for (int i = 0; i < locations.size(); i++) {
             weatherMap.put(locations.get(i), weatherClient.getWeatherForecastDto(locations.get(i)).getData());
         }
-        System.out.println("weatherMap:" + weatherMap);
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        //  String formattedString = date.format(formatter);
-        // System.out.println(formattedString);
-
-
-        // System.out.println(weatherForecastDtoList);
+         String formattedString = date.format(formatter);
 
         Map<String, WeatherForecastDataListDto> finalMap = new HashMap<>();
 
         for (Map.Entry<String, List<WeatherForecastDataListDto>> map : weatherMap.entrySet()) {
             List<WeatherForecastDataListDto> findWeathersForOneDay = map.getValue().stream()
-                    .filter(y -> y.getDatetime().equals(date))
+                    .filter(y -> y.getDatetime().equals(formattedString))
                     .collect(Collectors.toList());
             finalMap.put(map.getKey(), findWeathersForOneDay.get(0));
-
         }
             return finalMap;
         }

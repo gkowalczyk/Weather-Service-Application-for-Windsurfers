@@ -10,14 +10,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-
 import java.net.URI;
-
 import static java.util.Optional.ofNullable;
 
 @Component
 @RequiredArgsConstructor
-@EqualsAndHashCode
+
 public class WeatherClient {
 
     private static final Logger LOGGER = (Logger) LoggerFactory.getLogger(WeatherClient.class);
@@ -34,9 +32,11 @@ public class WeatherClient {
                 .encode()
                 .toUri();
         try {
+
             WeatherForecastDto forecast = restTemplate.getForObject(url, WeatherForecastDto.class);
             return ofNullable(forecast)
                     .orElseThrow();
+
         } catch (RestClientException e) {
             LOGGER.error(e.getMessage(), e);
             return new WeatherForecastDto();

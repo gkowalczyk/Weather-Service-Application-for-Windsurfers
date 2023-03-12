@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.time.LocalDate;
 @ToString
 @Getter
 @AllArgsConstructor
@@ -15,5 +14,5 @@ public class WeatherForecastDataList {
     private double high_temp;
     private double low_temp;
     private double wind_spd;
-    private String datatime;
+    private String dataTime;
 }
