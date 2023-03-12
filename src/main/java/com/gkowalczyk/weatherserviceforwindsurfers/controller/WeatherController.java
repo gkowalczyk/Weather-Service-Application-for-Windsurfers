@@ -7,6 +7,7 @@ import com.gkowalczyk.weatherserviceforwindsurfers.service.WeatherService;
 import com.gkowalczyk.weatherserviceforwindsurfers.validator.WeatherValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.Map;
@@ -28,7 +29,7 @@ public class WeatherController {
 
     @GetMapping("get")
 
-    public Map<String, WeatherForecastDataListDto> findTheBestPlaceToBe(@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) throws WeatherMapNotFoundException {
-        return weatherValidator.calculateTheBestPlace(weatherService.addWeatherForecastsToMap(date));
+    public ResponseEntity<Map<String, WeatherForecastDataListDto>> findTheBestPlaceToBe(@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) throws WeatherMapNotFoundException {
+        return ResponseEntity.ok(weatherValidator.calculateTheBestPlace(weatherService.addWeatherForecastsToMap(date)));
     }
 }
