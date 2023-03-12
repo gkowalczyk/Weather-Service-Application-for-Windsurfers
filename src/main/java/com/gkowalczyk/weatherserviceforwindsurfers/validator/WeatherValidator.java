@@ -51,7 +51,9 @@ public class WeatherValidator {
 
         Map<String, WeatherForecastDataListDto> calculateWindAndTemperatureConditionMap = calculateWindAndTemperatureCondition(weatherMap);
         Map<String, Double> calculateCoefficientConditionMap = calculateCoefficientCondition(calculateWindAndTemperatureConditionMap);
-        Map.Entry<String, Double> maxValue = calculateCoefficientConditionMap.entrySet().stream().max(Map.Entry.comparingByValue()).orElseThrow(() -> (new WeatherMapNotFoundException("")));
+        Map.Entry<String, Double> maxValue = calculateCoefficientConditionMap.entrySet()
+                .stream()
+                .max(Map.Entry.comparingByValue()).orElseThrow(() -> (new WeatherMapNotFoundException("")));
         Map<String, WeatherForecastDataListDto> mapOfBestLocation = calculateWindAndTemperatureConditionMap.entrySet()
                 .stream()
                 .filter(o -> o.getKey()
