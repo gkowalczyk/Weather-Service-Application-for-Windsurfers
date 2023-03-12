@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import java.time.LocalDate;
-
+@ToString
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,5 +20,7 @@ public class WeatherForecastDataListDto {
     @JsonProperty("wind_spd")
     private double wind_spd;
     @JsonProperty("datetime")
-    private LocalDate datetime;
+    private String datetime;
+
+
 }

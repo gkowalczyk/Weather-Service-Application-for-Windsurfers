@@ -1,19 +1,24 @@
 package com.gkowalczyk.weatherserviceforwindsurfers.database;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
-public class DataBase {
+public class DataBase implements CityInterface {
 
-    private final static Set<String> locationSet = new HashSet<>();
+
+    private final static List<String> locationSet = new ArrayList<>();
 
     static {
+
         locationSet.add(("Jastarnia"));
         locationSet.add(("Bridgetown"));
+        locationSet.add(("Fortaleza"));
+        locationSet.add(("Pissouri"));
+        locationSet.add(("Le Morne"));
         //...
-
     }
-    public static Set<String> getLocation() {
-        return new HashSet<>(locationSet);
+
+    @Override
+    public List<String> getLocation() {
+        return new ArrayList<>(locationSet);
     }
 }

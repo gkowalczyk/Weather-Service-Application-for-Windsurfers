@@ -1,15 +1,13 @@
 package com.gkowalczyk.weatherserviceforwindsurfers.controller;
 
 import com.gkowalczyk.weatherserviceforwindsurfers.client.WeatherClient;
-import com.gkowalczyk.weatherserviceforwindsurfers.database.Location;
-import com.gkowalczyk.weatherserviceforwindsurfers.domain.WeatherForecastDto;
+import com.gkowalczyk.weatherserviceforwindsurfers.domain.WeatherForecastDataListDto;
 import com.gkowalczyk.weatherserviceforwindsurfers.mapper.WeatherMapper;
 import com.gkowalczyk.weatherserviceforwindsurfers.service.WeatherService;
-import org.springframework.format.annotation.DateTimeFormat;
+import com.gkowalczyk.weatherserviceforwindsurfers.validator.WeatherValidator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -19,25 +17,22 @@ public class WeatherController {
     private final WeatherClient weatherClient;
     private final WeatherMapper weatherMapper;
     private final WeatherService weatherService;
+    private final WeatherValidator weatherValidator;
 
-    public WeatherController(WeatherClient weatherClient, WeatherMapper weatherMapper, WeatherService weatherService) {
+    @Autowired
+    public WeatherController(WeatherClient weatherClient, WeatherMapper weatherMapper, WeatherService weatherService, WeatherValidator weatherValidator) {
         this.weatherClient = weatherClient;
         this.weatherMapper = weatherMapper;
         this.weatherService = weatherService;
+        this.weatherValidator = weatherValidator;
     }
-  //  @GetMapping("get")
 
-   // public ResponseEntity<WeatherForecastDto> getWeatherForecast(@RequestParam("location") String location) {
-
-        //WeatherForecast weatherForecast = weatherMapper.mapToWeatherForecast(weatherClient.getWeatherForecastDto(location));
-      // WeatherForecastDataListDto weatherForecast = weatherClient.getWeatherForecastDto(location, date);
-
-         //   return ResponseEntity.ok(weatherClient.getWeatherForecastDto(location));
-    //}
-    @GetMapping("get")
-    public Map<String, WeatherForecastDto> findTheBestPlaceToBe(@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
-        final Map<String, WeatherForecastDto> mapOfCandidateLocations = new HashMap<>();
-        return weatherClient.addWeatherForecastToMap(date,mapOfCandidateLocations);
+    @GetMapping("get1")
+    // public WeatherForecastDataListDto findTheBestPlaceToBe(@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+    public Map<String, WeatherForecastDataListDto> findTheBestPlaceToBe(@RequestParam("date") String date, Map<String, WeatherForecastDataListDto> mapOfCandidateLocations ) {
+        // final Map<String, WeatherForecastDto> mapOfCandidateLocations = new HashMap<>();
+        return weatherValidator.calculateWindAndTemperatureCondition(weatherService.addWeatherForecastsToMap(date));
+       // return weatherService.addWeatherForecastsToMap(date);
         //return weatherService.findTheBestCondition(date);
-    }
+}
 }
