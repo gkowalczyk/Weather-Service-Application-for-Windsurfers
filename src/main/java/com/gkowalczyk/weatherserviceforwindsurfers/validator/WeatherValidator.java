@@ -30,6 +30,7 @@ public class WeatherValidator {
                 .filter(val -> val.getValue().getWind_spd() > MINIMUM_WIND_SPEED && val.getValue().getWind_spd() < MAXIMUM_WIND_SPEED)
                 .filter(val -> val.getValue().getLow_temp() > MINIMUM_TEMPERATURE && val.getValue().getHigh_temp() < MAXIMUM_TEMPERATURE)
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
     }
 
     public Map<String, Double> calculateCoefficientCondition(Map<String, WeatherForecastDataListDto> map) {
@@ -44,22 +45,27 @@ public class WeatherValidator {
             double result = windSpeed * 3 + averageTemp;
             finalMap.put(calculateCoefficientConditionMap.getKey(), result);
         }
+
         return finalMap;
     }
 
     public Map<String, WeatherForecastDataListDto> calculateTheBestPlace(Map<String, WeatherForecastDataListDto> weatherMap) throws WeatherMapNotFoundException {
 
         Map<String, WeatherForecastDataListDto> calculateWindAndTemperatureConditionMap = calculateWindAndTemperatureCondition(weatherMap);
+
         Map<String, Double> calculateCoefficientConditionMap = calculateCoefficientCondition(calculateWindAndTemperatureConditionMap);
-        Map.Entry<String, Double> maxValue = calculateCoefficientConditionMap.entrySet()
+
+        Map.Entry<String, Double> maxValue =
+                calculateCoefficientConditionMap.entrySet()
                 .stream()
                 .max(Map.Entry.comparingByValue()).orElseThrow(() -> (new WeatherMapNotFoundException("")));
+
         Map<String, WeatherForecastDataListDto> mapOfBestLocation = calculateWindAndTemperatureConditionMap.entrySet()
                 .stream()
                 .filter(o -> o.getKey()
                         .equals(maxValue.getKey()))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-        return calculateCoefficientConditionMap.size() > 1 ? mapOfBestLocation : new HashMap<>();
+               return calculateCoefficientConditionMap.size() > 0 ? mapOfBestLocation : new HashMap<>();
     }
 }
 
